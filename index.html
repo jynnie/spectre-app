@@ -7,6 +7,7 @@
       /* Credit: https://electronjs.org/docs/api/frameless-window */
       :root {
         --marg: 5px;
+        --radius: 100;
       }
 
       body {
@@ -52,11 +53,11 @@
       }
 
       .beneficial {
-        fill: rgba(0,0,0,0.9);
+        fill: rgba(0,0,0,0.65);
       }
 
       .necessary {
-        fill: rgba(0,0,0,0.65);
+        fill: rgba(0,0,0,0.35);
       }
 
       #holes rect {
@@ -64,7 +65,7 @@
       }
 
       #holes circle {
-        r: 100;
+        r: var(--radius);
         /* fill: black; */
       }
 

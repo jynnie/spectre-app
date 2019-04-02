@@ -8,6 +8,7 @@ let uid = "";
 const URL = "http://33fb9d1d.ngrok.io"; // server url
 const socket = io.connect(URL);
 
+const html = document.getElementsByTagName('html')[0];
 const clickThru = document.getElementById('clickThroughElement')
 const mainRect = document.getElementById('main');
 
@@ -74,6 +75,12 @@ const switchMode = (el) => {
     } else if (el.key == 2) { // beneficial
     mainRect.className.baseVal = "beneficial"
     }
+
+    if (el.key == 0) {
+        html.style.setProperty("--radius", "100");
+    } else if (el.key == 9) {
+        html.style.setProperty("--radius", "200");
+    }
 }
 
 // sets up click through spaces
@@ -115,7 +122,7 @@ socket.on("new user", id => {
  * @param {Object[number, number]} relPos of point
  */
 socket.on("point update", (id, relPos) => {
-    console.log(`New point for ${id}`);
+    console.log(`New point for ${id} at (${relPos.x}, ${relPos.y})`);
     setCircle(id, true);
     moveCircle(getAbsPos(relPos), id);
 });
