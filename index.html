@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Spectre</title>
+    <style>
+      /* Credit: https://electronjs.org/docs/api/frameless-window */
+      :root {
+        --marg: 5px;
+      }
+
+      body {
+        margin: 0;
+        background: transparent; 
+        -webkit-app-region: drag;
+        border-top: 20px solid transparent;
+        /* Credit: https://stackoverflow.com/questions/6900124/how-to-make-certain-text-not-selectable-with-css */
+        -webkit-user-select: none; /* Safari */        
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* IE10+/Edge */
+        user-select: none; /* Standard */
+      }
+
+      .drag {
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        height: 20px;
+        background: transparent;
+        transition: background 0.2s;
+      }
+
+      .drag:hover {
+        background: white;
+      }
+
+      button {
+        -webkit-app-region: no-drag;
+      }
+
+      #clickThroughElement {
+        margin: 0 var(--marg) var(--marg);
+        width: calc(100vw - 2 * var(--marg));
+        height: calc(100vh - 2 * var(--marg));
+        position: fixed;
+        top: 20px;
+      }
+
+      svg {
+        width: calc(100vw - 2 * var(--marg));
+        height: calc(100vh - 2 * var(--marg));
+      }
+
+      .beneficial {
+        fill: rgba(0,0,0,0.9);
+      }
+
+      .necessary {
+        fill: rgba(0,0,0,0.65);
+      }
+
+      #holes rect {
+        fill: white;
+      }
+
+      #holes circle {
+        r: 100;
+        /* fill: black; */
+      }
+
+      span {
+        text-align: right;
+        position: absolute;
+        top: 3px;
+        right: 10px;
+        color: black;
+        size: 5px;
+        pointer-events: none;
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="drag"></div>
+    <span id="roomCode">0000</span>
+    <div id="clickThroughElement">
+      <svg xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <mask id="holes">
+            <rect width="100%" height="100%" />
+            <!-- <circle id="user0001" filter="url(#blur)" /> -->
+          </mask>
+          <filter id="blur">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="5" />
+          </filter>
+        </defs>
+        <rect x="0" y="0" width="100%" height="100%" mask="url(#holes)" id="main" class="beneficial" />
+      </svg>
+    </div>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+  <script src="api.js"></script>
+  <script src="script.js"></script>
+</html>
