@@ -2,6 +2,8 @@
 
 Electron component to a desktop overlay mod that allows other users to control "flashlights" on the screen. Playful experiment about the involvement of spectators seeing.
 
+Somehow, our [first clip](https://clips.twitch.tv/HomelyAssiduousQueleaSoonerLater) went kind of viral.
+
 ## Installation 🔨
 
 This is the desktop client portion of spectre. Checkout the server and web client component [here](https://github.com/jynnie/spectre-web).
