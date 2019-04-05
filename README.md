@@ -45,7 +45,7 @@ I developed this as part of a project to experiment with how spectators (spectre
 
 ## Contributing 🙌
 
-To suggest features or report bugs, create a [Github issue](https://github.com/jynnie/spectre-app).
+To suggest features or report bugs, create a [Github issue](https://github.com/jynnie/spectre-app). Want to chat or ask questions? Join the [Discord](https://discord.com/invite/UwYRv3h).
 
 ## License 🔎
 [CC-BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/) @ [jynnie](https://github.com/jynnie)
