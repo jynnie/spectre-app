@@ -37,6 +37,10 @@
         background: white;
       }
 
+      .drag:hover span {
+        color: black;
+      }
+
       button {
         -webkit-app-region: no-drag;
       }
@@ -78,7 +82,7 @@
         position: absolute;
         top: 3px;
         right: 10px;
-        color: black;
+        color: rgba(256, 256, 256, 0.21);
         size: 5px;
         pointer-events: none;
         font-family: sans-serif;
@@ -87,8 +91,9 @@
     </style>
   </head>
   <body>
-    <div class="drag"></div>
-    <span id="roomCode">0000</span>
+    <div class="drag">
+      <span id="roomCode">0000</span>
+    </div>
     <div id="clickThroughElement">
       <svg xmlns="http://www.w3.org/2000/svg">
         <defs>

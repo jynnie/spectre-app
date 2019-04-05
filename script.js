@@ -5,7 +5,7 @@ const win = require('electron').remote.getCurrentWindow();
 let uid = "";
 
 // socket connections
-const URL = "SERVER_URL"; // server url
+const URL = "localhost:8080"; // server url
 const socket = io.connect(URL);
 
 const html = document.getElementsByTagName('html')[0];
