@@ -31,7 +31,7 @@ To change brightness and circle size settings, make sure you're focused on the a
 * Press 0 for smaller circles
 * Type 666 to enter cheat mode >:)
 
-App should be draggable from the top bar of the app and shoul turn white on hover.
+App should be draggable from the top bar of the app and should turn white on hover.
 
 ## Why did you make this? 👀
 
@@ -39,7 +39,7 @@ I developed this as part of a project to experiment with how spectators (spectre
 
 ### List of Features in Consideration ⏲
 
-* Settings modal for more fine control of brightness and circle size
+* Settings modal for finer control of brightness and circle size
 * Different shapes
 * Participant max, lottery system for active
 
