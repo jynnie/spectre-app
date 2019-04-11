@@ -2,7 +2,7 @@
 
 Electron component to a desktop overlay mod that allows other users to control "flashlights" on the screen. Playful experiment about the involvement of spectators seeing.
 
-Somehow, our [first clip](https://clips.twitch.tv/HomelyAssiduousQueleaSoonerLater) went kind of viral.
+![Spectre Mod Clip](/spectre.gif)
 
 ## Installation 🔨
 
