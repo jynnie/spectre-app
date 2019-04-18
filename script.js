@@ -5,8 +5,7 @@ const win = require('electron').remote.getCurrentWindow();
 let uid = "";
 
 // socket connections
-const URL = "localhost:8080"; // server url
-const socket = io.connect(URL);
+const socket = io.connect(SERVER_URL);
 
 const html = document.getElementsByTagName('html')[0];
 const clickThru = document.getElementById('clickThroughElement');
@@ -117,7 +116,7 @@ document.addEventListener("mousemove", el => {
 document.addEventListener("keypress", switchMode);
 
 // get request to tell server that you exist and get unique id
-get(URL + '/screen', {}).then(id => {
+get(SERVER_URL + '/screen', {}).then(id => {
     uid = id.screenid;
     document.getElementById("roomCode").innerText = uid;
 

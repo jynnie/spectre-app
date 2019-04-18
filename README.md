@@ -13,7 +13,7 @@ This is the desktop client portion of spectre. Make sure to also install the ser
 $ npm install
 ```
 
-To connect to a server, change URL in `script.js` to your server URL. 
+To connect to a server, create `config.js` and set `SERVER_URL` to your server URL. There's an `example.config.js` for reference.
 
 ## Usage 🔦
 
