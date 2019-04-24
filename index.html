@@ -3,97 +3,13 @@
   <head>
     <meta charset="UTF-8">
     <title>Spectre</title>
-    <style>
-      /* Credit: https://electronjs.org/docs/api/frameless-window */
-      :root {
-        --marg: 5px;
-        --radius: 100;
-        --alpha: 0.98;
-      }
-
-      body {
-        margin: 0;
-        background: transparent; 
-        -webkit-app-region: drag;
-        border-top: 20px solid transparent;
-        /* Credit: https://stackoverflow.com/questions/6900124/how-to-make-certain-text-not-selectable-with-css */
-        -webkit-user-select: none; /* Safari */        
-        -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* IE10+/Edge */
-        user-select: none; /* Standard */
-      }
-
-      .drag {
-        position: fixed;
-        top: 0;
-        width: 100vw;
-        height: 20px;
-        background: transparent;
-        transition: background 0.2s;
-        z-index: 69;
-      }
-
-      .drag:hover {
-        background: white;
-      }
-
-      .drag:hover span {
-        color: black;
-      }
-
-      button {
-        -webkit-app-region: no-drag;
-      }
-
-      #clickThroughElement {
-        margin: 0 var(--marg) var(--marg);
-        width: calc(100vw - 2 * var(--marg));
-        height: calc(100vh - 2 * var(--marg));
-        position: fixed;
-        top: 20px;
-      }
-
-      svg {
-        width: calc(100vw - 2 * var(--marg));
-        height: calc(100vh - 2 * var(--marg));
-        position: fixed;
-        top: var(--marg);
-      }
-
-      .beneficial {
-        fill: rgba(0,0,0,0.98);
-      }
-
-      .necessary {
-        fill: rgba(0,0,0,0.85);
-      }
-
-      #holes rect {
-        fill: white;
-      }
-
-      #holes circle {
-        r: var(--radius);
-        /* fill: black; */
-      }
-
-      span {
-        text-align: right;
-        position: absolute;
-        top: 3px;
-        right: 10px;
-        color: rgba(256, 256, 256, 0.21);
-        size: 5px;
-        pointer-events: none;
-        font-family: sans-serif;
-        z-index: 420;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css"></style>
   </head>
   <body>
     <div class="drag">
       <span id="roomCode">0000</span>
     </div>
+
     <div id="clickThroughElement">
       <svg xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -105,11 +21,30 @@
             <feGaussianBlur in="SourceGraphic" stdDeviation="5" />
           </filter>
         </defs>
-        <rect x="0" y="0" width="100%" height="100%" mask="url(#holes)" id="main" class="beneficial" />
+        <rect x="0" y="0" width="100%" height="100%" mask="url(#holes)" id="main" class="darkness" />
       </svg>
+    </div>
+
+    <div id="settings" class="modal">
+      <div>
+        Darkness
+        <input type="range" min="0" max="100" value="98" class="slider" id="darknessSlider" onchange="syncDarknessSettings('slider')">
+        <input type="number" min="0" max="100" value="98" id="darknessNumber" onchange="syncDarknessSettings('number')">
+      </div>
+      <div>
+        Circle Size
+        <input type="range" min="50" max="200" value="100" class="slider" id="circleSlider" onchange="syncCircleSettings('slider')">
+        <input type="number" min="50" max="200" value="100" id="circleNumber" onchange="syncCircleSettings('number')">
+      </div>
+      <div>
+        Circle Alpha
+        <input type="range" min="0" max="100" value="98" class="slider" id="lightnessSlider" onchange="syncLightnessSettings('slider')">
+        <input type="number" min="0" max="100" value="98" id="lightnessNumber" onchange="syncLightnessSettings('number')">
+      </div>
     </div>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
   <script src="api.js"></script>
+  <script src="config.js"></script>
   <script src="script.js"></script>
 </html>

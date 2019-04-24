@@ -5,12 +5,19 @@ const win = require('electron').remote.getCurrentWindow();
 let uid = "";
 
 // socket connections
-const URL = "localhost:8080"; // server url
-const socket = io.connect(URL);
+const socket = io.connect(SERVER_URL);
 
 const html = document.getElementsByTagName('html')[0];
 const clickThru = document.getElementById('clickThroughElement');
 const mainRect = document.getElementById('main');
+
+const settingsModal = document.getElementById('settings');
+const darknessSlider = document.getElementById('darknessSlider');
+const darknessNumber = document.getElementById('darknessNumber');
+const circleSlider = document.getElementById('circleSlider');
+const circleNumber = document.getElementById('circleNumber');
+const lightSlider = document.getElementById('lightnessSlider');
+const lightNumber = document.getElementById('lightnessNumber');
 
 let lastKeys = [];
 let cheating = false;
@@ -37,7 +44,7 @@ const setCircle = (id, on) => {
     let circle = document.getElementById(id);
     console.log(circle);
     if (on) {
-        circle.setAttribute('fill', 'black');
+        circle.setAttribute('fill', 'rgba(0,0,0,var(--calpha))');
     } else {
         circle.setAttribute('fill', 'none');
     }
@@ -69,18 +76,10 @@ const getAbsPos = relPos => {
     return {x: absX, y: absY};
 };
 
-// switches between coloration modes
+// open settings model on esc keydown
 const switchMode = (el) => {
-    if (el.key == 1) { // necessary
-    mainRect.className.baseVal = "necessary";
-    } else if (el.key == 2) { // beneficial
-    mainRect.className.baseVal = "beneficial";
-    }
-
-    if (el.key == 0) {
-        html.style.setProperty("--radius", "100");
-    } else if (el.key == 9) {
-        html.style.setProperty("--radius", "200");
+    if (el.keyCode == 27) {
+        settingsModal.classList.toggle("open");
     }
 
     // turn on cheat mode when "666" is typed
@@ -95,9 +94,60 @@ const switchMode = (el) => {
             document.querySelector("#user0001").setAttribute('fill', 'none');
         } else {
             cheating = true;
-            document.querySelector("#user0001").setAttribute('fill', 'black');
+            document.querySelector("#user0001").setAttribute('fill', 'rgba(0,0,0,var(--calpha))');
         }
     }
+};
+
+// ensures darkness slider and text input are synced and adjusts setting
+const syncDarknessSettings = (which) => {
+    let x;
+    if (which == "slider") {
+        x = darknessSlider.value;
+        darknessNumber.value = x;
+    } else {
+        x = darknessNumber.value;
+        darknessSlider.value = x;
+    }
+    adjustDarkness(x);
+};
+
+const adjustDarkness = (x) => {
+    html.style.setProperty("--alpha", `${x/100}`);
+};
+
+// ensures circle slider and text input are synced and adjusts setting
+const syncCircleSettings = (which) => {
+    let x;
+    if (which == "slider") {
+        x = circleSlider.value;
+        circleNumber.value = x;
+    } else {
+        x = circleNumber.value;
+        circleSlider.value = x;
+    }
+    adjustCircle(x);
+};
+
+const adjustCircle = (x) => {
+    html.style.setProperty("--radius", x);
+};
+
+// ensures circle alpha slider and text input are synced and adjusts setting
+const syncLightnessSettings = (which) => {
+    let x;
+    if (which == "slider") {
+        x = lightSlider.value;
+        lightNumber.value = x;
+    } else {
+        x = lightNumber.value;
+        lightSlider.value = x;
+    }
+    adjustLightness(x);
+};
+
+const adjustLightness = (x) => {
+    html.style.setProperty("--calpha", `${x/100}`);
 };
 
 // sets up click through spaces
@@ -113,11 +163,11 @@ document.addEventListener("mousemove", el => {
     if (cheating) {moveCircle(el, 'user0001');}
 });
 
-// switching between modes by keypress
-document.addEventListener("keypress", switchMode);
+// open settings
+document.addEventListener("keydown", switchMode);
 
 // get request to tell server that you exist and get unique id
-get(URL + '/screen', {}).then(id => {
+get(SERVER_URL + '/screen', {}).then(id => {
     uid = id.screenid;
     document.getElementById("roomCode").innerText = uid;
 
