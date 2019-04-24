@@ -16,6 +16,8 @@ const darknessSlider = document.getElementById('darknessSlider');
 const darknessNumber = document.getElementById('darknessNumber');
 const circleSlider = document.getElementById('circleSlider');
 const circleNumber = document.getElementById('circleNumber');
+const lightSlider = document.getElementById('lightnessSlider');
+const lightNumber = document.getElementById('lightnessNumber');
 
 let lastKeys = [];
 let cheating = false;
@@ -42,7 +44,7 @@ const setCircle = (id, on) => {
     let circle = document.getElementById(id);
     console.log(circle);
     if (on) {
-        circle.setAttribute('fill', 'black');
+        circle.setAttribute('fill', 'rgba(0,0,0,var(--calpha))');
     } else {
         circle.setAttribute('fill', 'none');
     }
@@ -92,7 +94,7 @@ const switchMode = (el) => {
             document.querySelector("#user0001").setAttribute('fill', 'none');
         } else {
             cheating = true;
-            document.querySelector("#user0001").setAttribute('fill', 'black');
+            document.querySelector("#user0001").setAttribute('fill', 'rgba(0,0,0,var(--calpha))');
         }
     }
 };
@@ -129,6 +131,23 @@ const syncCircleSettings = (which) => {
 
 const adjustCircle = (x) => {
     html.style.setProperty("--radius", x);
+};
+
+// ensures circle alpha slider and text input are synced and adjusts setting
+const syncLightnessSettings = (which) => {
+    let x;
+    if (which == "slider") {
+        x = lightSlider.value;
+        lightNumber.value = x;
+    } else {
+        x = lightNumber.value;
+        lightSlider.value = x;
+    }
+    adjustLightness(x);
+};
+
+const adjustLightness = (x) => {
+    html.style.setProperty("--calpha", `${x/100}`);
 };
 
 // sets up click through spaces

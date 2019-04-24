@@ -36,6 +36,11 @@
         <input type="range" min="50" max="200" value="100" class="slider" id="circleSlider" onchange="syncCircleSettings('slider')">
         <input type="number" min="50" max="200" value="100" id="circleNumber" onchange="syncCircleSettings('number')">
       </div>
+      <div>
+        Circle Alpha
+        <input type="range" min="0" max="100" value="98" class="slider" id="lightnessSlider" onchange="syncLightnessSettings('slider')">
+        <input type="number" min="0" max="100" value="98" id="lightnessNumber" onchange="syncLightnessSettings('number')">
+      </div>
     </div>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
