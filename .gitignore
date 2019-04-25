@@ -1,3 +1,6 @@
 node_modules
 .jshintrc
 config.js
+out/
+*.swp
+.DS_Store
