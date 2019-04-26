@@ -6,6 +6,10 @@ Electron component to a desktop overlay mod that allows other users to control "
 
 ## Installation 🔨
 
+To download an official build, check out [releases](https://github.com/jynnie/spectre-app/releases). For more detailed instructions, check out this [video](https://youtu.be/4xnEr9n1jvk).
+
+### For Development
+
 This is the desktop client portion of spectre. Make sure to also install the server and web client component [here](https://github.com/jynnie/spectre-web).
 
 ```
