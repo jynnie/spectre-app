@@ -28,7 +28,7 @@ $ npm start
 
 Resize the application to cover your whole screen. In the top right corner, if the app has connected to the server, a room code will appear there. If it has not connected, the code displayed will be 0000. Web clients can then connect to the server, enter the room code, and use the mouse pad area to control a light circle.
 
-To change brightness and circle size settings, press `esc` to toggle the settings modal. To enable cheat mode, type `666` >:)
+To change brightness and circle size settings, press `esc` to toggle the settings modal. Want to have several displays mirroring the same flashlights? Join all overlays to the same room code. To enable cheat mode, type `666` >:)
 
 App should be draggable from the top bar of the app and should turn white on hover.
 
