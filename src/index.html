@@ -41,6 +41,11 @@
         <input type="range" min="0" max="100" value="98" class="slider" id="lightnessSlider" onchange="syncLightnessSettings('slider')">
         <input type="number" min="0" max="100" value="98" id="lightnessNumber" onchange="syncLightnessSettings('number')">
       </div>
+      <div>
+        Room
+        <input type="text" id="roomCodeOption" maxlength="4" >
+        <input type="submit" onclick="enterRoom()">
+      </div>
     </div>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>

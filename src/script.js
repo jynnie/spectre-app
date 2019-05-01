@@ -18,6 +18,7 @@ const circleSlider = document.getElementById('circleSlider');
 const circleNumber = document.getElementById('circleNumber');
 const lightSlider = document.getElementById('lightnessSlider');
 const lightNumber = document.getElementById('lightnessNumber');
+const roomCodeOption = document.getElementById('roomCodeOption');
 
 let lastKeys = [];
 let cheating = false;
@@ -151,6 +152,18 @@ const adjustLightness = (x) => {
     html.style.setProperty("--calpha", `${x/100}`);
 };
 
+// enters specific room based on code
+const enterRoom = () => {
+    if (roomCodeOption.value.length == 4) {
+        uid = roomCodeOption.value;
+        socket.emit("screen join", uid);
+        document.getElementById("roomCode").innerText = uid;
+    } else {
+        roomCodeOption.value = "";
+        roomCodeOption.placeholder = "code must be 4 characters";
+    }
+};
+
 // sets up click through spaces
 clickThru.addEventListener('mouseenter', () => {
     win.setIgnoreMouseEvents(true, { forward: true });
@@ -171,6 +184,7 @@ document.addEventListener("keydown", switchMode);
 get(SERVER_URL + '/screen', {}).then(id => {
     uid = id.screenid;
     document.getElementById("roomCode").innerText = uid;
+    roomCodeOption.value = uid;
 
     // send to server socket info
     socket.emit("screen register", uid);

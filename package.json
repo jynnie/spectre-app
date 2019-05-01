@@ -22,7 +22,10 @@
   },
   "dependencies": {
     "electron-compile": "^6.4.4",
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "hoek": ">=4.2.1",
+    "cryptiles": ">=4.1.2",
+    "mime": ">=1.4.1"
   },
   "config": {
     "forge": {
