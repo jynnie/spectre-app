@@ -31,6 +31,7 @@ const createCircle = (id) => {
     const holes = document.getElementById("holes");
     const circle = document.createElementNS(xmlns, "circle");
     circle.setAttributeNS(null, 'id', id);
+    circle.setAttributeNS(null, 'fill', 'none');
     circle.setAttributeNS(null, 'filter', 'url(#blur)');
     holes.appendChild(circle);
 };
